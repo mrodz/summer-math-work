@@ -124,8 +124,11 @@ mod list_ops {
         }
     }
 
-    pub fn mean(v: &Vec<i32>) -> f32 {
-        v.iter().map(|n| *n as f32).sum::<f32>() / (v.len() as f32)
+    pub fn mean/*<'a, T, R>*/(v: &/*'a*/ Vec<f32/*T*/>) -> f32 
+        /*where T: std::ops::Div<Output = f32> + std::iter::Sum<&'a T> + Into<f32> + From<usize>,
+        R: std::ops::Div<Output = f32> + Into<f32> */
+    {
+        v.iter().sum::</*T*/f32>() / (v.len() as f32)
     }
 }
 
